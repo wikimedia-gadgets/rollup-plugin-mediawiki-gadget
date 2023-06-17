@@ -11,11 +11,14 @@ This plugin provides support for integrating Rollup with external packages from 
 * codextest [ResourceLoader | package | dependencies=user.options ] | codextest.js | codextest-main.js | codextest-ChangeNameDialog.js
 ```
 
-`vite.config.js`:
+`rollup.config.js`:
 ```js
 import mwGadgets from 'rollup-plugin-mediawiki-gadgets';
 
 export default {
+  output:{
+    format: 'cjs', // Or 'iife' for a single bundle
+  },
   plugins: [
     mwGadgets({
       // Note that the gadget must be ResourceLoader compatible
@@ -30,7 +33,9 @@ export default {
 ```
 
 ### Vite Compatibility
-To use with Vite you need to specify `enforce: 'pre'`:
+To use with Vite you need to specify `enforce: 'pre'`.
+
+`vite.config.js`:
 ```js
 export default {
   plugins: [
