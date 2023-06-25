@@ -17,14 +17,14 @@ This plugin provides support for integrating Rollup with external packages from 
 
 `rollup.config.js`:
 ```js
-import mwGadgets from 'rollup-plugin-mediawiki-gadgets';
+import mwGadget from 'rollup-plugin-mediawiki-gadgets';
 
 export default {
   output:{
     format: 'cjs', // Or 'iife' for a single bundle
   },
   plugins: [
-    mwGadgets({
+    mwGadget({
       // Note that the gadget must be ResourceLoader compatible
       gadgetDef: './gadget-def.txt',
 
