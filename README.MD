@@ -44,7 +44,7 @@ To use with Vite you need to specify `enforce: 'pre'`.
 export default {
   plugins: [
     {
-      ...mwGadgets(/* ... */),
+      ...mwGadget(/* ... */),
       enforce: 'pre'
     }
   ]
