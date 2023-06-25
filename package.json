@@ -9,6 +9,7 @@
       "require": "./dist/index.cjs"
     }
   },
+  "repository": "github:diskdance/rollup-plugin-mediawiki-gadget",
   "files": [
     "dist"
   ],
