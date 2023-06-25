@@ -1,5 +1,9 @@
 # rollup-plugin-mediawiki-gadget
 
+<a href="https://www.npmjs.com/package/rollup-plugin-mediawiki-gadget">
+  <img src="https://img.shields.io/npm/v/rollup-plugin-mediawiki-gadget.svg" alt="npm version" >
+</a>
+
 Roll up MediaWiki gadgets with modern goodies.
 
 This plugin provides support for integrating Rollup with external packages from MediaWiki ResourceLoader.
