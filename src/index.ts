@@ -42,7 +42,7 @@ function mwGadget(config: MwGadgetConfig): Plugin {
   const softDependencies = config.softDependencies;
 
   return {
-    name: 'mediawiki-gadgets',
+    name: 'mediawiki-gadget',
     async resolveId(source) {
       if ([...dependencies, ...softDependencies].includes(source)) {
         return false;
