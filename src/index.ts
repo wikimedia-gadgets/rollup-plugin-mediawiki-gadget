@@ -5,7 +5,7 @@ interface MwGadgetConfig {
   /** Path of the gadget definition file. */
   gadgetDef: string,
   /** Additional lazy-load dependencies. */
-  softDependencies: string[],
+  softDependencies?: string[],
 }
 
 const OPTION_REGEX = /\[(.*?)\]/;
@@ -39,7 +39,7 @@ function getGadgetDependencies(gadgetDefPath: string): string[] {
  */
 function mwGadget(config: MwGadgetConfig): Plugin {
   const dependencies = getGadgetDependencies(config.gadgetDef);
-  const softDependencies = config.softDependencies;
+  const softDependencies = config.softDependencies ?? [];
 
   return {
     name: 'mediawiki-gadget',
