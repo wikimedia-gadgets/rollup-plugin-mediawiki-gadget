@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-mediawiki-gadget",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Rollup MediaWiki gadgets with modern goodies",
   "main": "./dist/index.cjs",
   "exports": {
