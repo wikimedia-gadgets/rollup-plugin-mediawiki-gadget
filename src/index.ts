@@ -6,6 +6,8 @@ interface MwGadgetConfig {
   gadgetDef: string,
   /** Additional lazy-load dependencies. */
   softDependencies?: string[],
+  /** Set to `true` if you need ECMAScript 5 compatibility. */
+  legacy?: boolean,
 }
 
 const OPTION_REGEX = /\[(.*?)\]/;
@@ -52,7 +54,9 @@ function mwGadget(config: MwGadgetConfig): Plugin {
       if (targetModuleId && softDependencies.includes(targetModuleId)) {
         return {
           left: 'mw.loader.using(',
-          right: `).then(require=>require("${targetModuleId}"))`,
+          right: config.legacy
+            ? `).then(function(require){return require("${targetModuleId}")})`
+            : `).then(require=>require("${targetModuleId}"))`,
         };
       }
     },

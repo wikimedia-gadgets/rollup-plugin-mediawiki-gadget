@@ -30,7 +30,11 @@ export default {
 
       // Additional dependencies to load conditionally using import()
       // It will be transpiled to mw.loader.using calls on the fly
-      softDependencies: ['vue', '@wikimedia/codex']
+      softDependencies: ['vue', '@wikimedia/codex'],
+
+      // By default the generated code uses arrow functions for smaller code size
+      // Set this to `true` if you need ECMAScript 5 compatibility
+      legacy: false,
     })
   ]
 };
