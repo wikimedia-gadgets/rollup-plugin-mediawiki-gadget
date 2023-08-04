@@ -1,11 +1,17 @@
 {
   "name": "rollup-plugin-mediawiki-gadget",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Rollup MediaWiki gadgets with modern goodies",
   "source": "src/index.ts",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
   "repository": "github:wikimedia-gadgets/rollup-plugin-mediawiki-gadget",
   "files": [
     "dist"
