@@ -1,13 +1,11 @@
 import { readFileSync } from 'fs';
-import type { Plugin } from 'rollup';
+import type { NormalizedOutputOptions, Plugin } from 'rollup';
 
 interface MwGadgetConfig {
   /** Path of the gadget definition file. */
   gadgetDef: string,
   /** Additional lazy-load dependencies. */
   softDependencies?: string[],
-  /** Set to `true` if you need ECMAScript 5 compatibility. */
-  legacy?: boolean,
 }
 
 const OPTION_REGEX = /\[(.*?)\]/;
@@ -42,6 +40,7 @@ function getGadgetDependencies(gadgetDefPath: string): string[] {
 function mwGadget(config: MwGadgetConfig): Plugin {
   const dependencies = getGadgetDependencies(config.gadgetDef);
   const softDependencies = config.softDependencies ?? [];
+  let outputOptions: NormalizedOutputOptions;
 
   return {
     name: 'mediawiki-gadget',
@@ -50,13 +49,16 @@ function mwGadget(config: MwGadgetConfig): Plugin {
         return false;
       }
     },
+    async renderStart(receivedOutputOptions) {
+      outputOptions = receivedOutputOptions;
+    },
     renderDynamicImport({ targetModuleId }) {
       if (targetModuleId && softDependencies.includes(targetModuleId)) {
         return {
           left: 'mw.loader.using(',
-          right: config.legacy
-            ? `).then(function(require){return require("${targetModuleId}")})`
-            : `).then(require=>require("${targetModuleId}"))`,
+          right: outputOptions.generatedCode.arrowFunctions
+            ? `).then(require=>require("${targetModuleId}"))`
+            : `).then(function(require){return require("${targetModuleId}")})`,
         };
       }
     },
